@@ -1,0 +1,18 @@
+on:
+  issues:
+    types: [labeled, unlabeled]
+  project_card:
+    types: [moved, created]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Action Test Job
+    steps:
+    - name: Run action in this repository
+      id: run
+      uses: ./
+      with:
+        owner: 'mathiasjakobsen'
+        repo: 'github-estimates-action'
+        token: ${{ secrets.GITHUB_TOKEN }}
