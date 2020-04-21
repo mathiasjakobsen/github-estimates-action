@@ -9,10 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Action Test Job
     steps:
-    - name: Run action in this repository
-      id: run
-      uses: ./
-      with:
-        owner: 'mathiasjakobsen'
-        repo: 'github-estimates-action'
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v1
+
+      - name: Run action in this repository
+        id: run
+        uses: ./
+        with:
+          owner: 'mathiasjakobsen'
+          repo: 'github-estimates-action'
+          token: ${{ secrets.GITHUB_TOKEN }}
