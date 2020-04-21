@@ -1,0 +1,15 @@
+name: 'GitHub Estimates Action'
+description: 'Automatically update GitHub projects description with total estimate (i.e. story points, hours, etc.) of each project column, for quick overview.'
+inputs:
+  token:
+    description: 'GitHub repository token ($GITHUB_TOKEN)'
+    requried: true
+  owner:
+    description: 'GitHub user or organisation'
+    requried: true
+  repo:
+    description: 'GitHub repository name'
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'
