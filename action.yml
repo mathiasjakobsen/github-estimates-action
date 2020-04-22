@@ -1,5 +1,10 @@
 name: 'GitHub Estimates Action'
 description: 'Automatically update GitHub projects description with total estimate (i.e. story points, hours, etc.) of each project column, for quick overview.'
+author: 'Mathias Lynnerup Jakobsen'
+branding:
+  color: 'green'
+  icon: 'clock'
+  
 inputs:
   token:
     description: 'GitHub repository token ($GITHUB_TOKEN)'

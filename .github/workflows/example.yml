@@ -1,3 +1,5 @@
+name: Update project estimates
+
 on:
   issues:
     types: [labeled, unlabeled]
@@ -7,11 +9,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Action Test Job
+    name: Update project column estimates
     steps:
       - uses: actions/checkout@v1
 
-      - name: Run action in this repository
+      - name: Use API to calculate and update total estimates in each column
         id: run
         uses: ./
         with:
