@@ -15,6 +15,10 @@ inputs:
   repo:
     description: 'GitHub repository name'
     required: true
+  prefix:
+    description: 'Story point label prefix'
+    required: false
+    default: ""
 runs:
   using: 'node12'
   main: 'index.js'
