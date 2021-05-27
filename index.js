@@ -34,9 +34,11 @@ try {
                 // that prefix as indicating story points.
                 if (prefix !== "") {
                   labels.filter((l) => l.name.startsWith(prefix)).map((l) => {
-                    // TODO(negz): Handle the case where prefix is NaN?
-                    const points = l.name.slice(prefix.length)
-                    total = total + parseInt(points)
+                    const points = parseInt(l.name.slice(prefix.length))
+                    if (isNaN(points)) {
+                      return
+                    }
+                    total = total + points
                   })
                   return total
                 }
@@ -44,7 +46,11 @@ try {
                 // If a prefix was not specified we treat labels with the
                 // description 'Story Point' as indicating story points.
                 labels.filter((l) => l.description = 'Story Point').map((l) => {
-                  total = total + parseInt(l.name)
+                  const points = parseInt(l.name)
+                  if (isNaN(points)) {
+                    return
+                  }
+                  total = total + points
                 })
 
                 return total
