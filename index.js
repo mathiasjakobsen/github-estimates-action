@@ -6,6 +6,7 @@ try {
   const token = core.getInput('token')
   const owner = core.getInput('owner')
   const repo = core.getInput('repo')
+  const prefix = core.getInput('prefix')
 
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`)
@@ -29,8 +30,27 @@ try {
               }).then(({ data: labels }) => {
                 let total = 0
 
+                // If a prefix was specified we treat all labels starting with
+                // that prefix as indicating story points.
+                if (prefix !== "") {
+                  labels.filter((l) => l.name.startsWith(prefix)).map((l) => {
+                    const points = parseInt(l.name.slice(prefix.length))
+                    if (isNaN(points)) {
+                      return
+                    }
+                    total = total + points
+                  })
+                  return total
+                }
+
+                // If a prefix was not specified we treat labels with the
+                // description 'Story Point' as indicating story points.
                 labels.filter((l) => l.description = 'Story Point').map((l) => {
-                  total = total + parseInt(l.name)
+                  const points = parseInt(l.name)
+                  if (isNaN(points)) {
+                    return
+                  }
+                  total = total + points
                 })
 
                 return total
